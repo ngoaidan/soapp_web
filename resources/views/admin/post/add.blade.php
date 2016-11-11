@@ -69,7 +69,6 @@
         finder.selectActionFunction = SetFileField;
         finder.popup();
     }
-
     // This is a sample function which is called when a file is selected in CKFinder.
     function SetFileField( fileUrl )
     {

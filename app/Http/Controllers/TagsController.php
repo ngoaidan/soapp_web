@@ -2,6 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TagRequest;
 use Session;
 use Illuminate\Http\Request;
 use App\Tags;
@@ -14,14 +15,8 @@ class TagsController extends Controller {
 		return view('admin.tags.list', compact('data'));
 	}
 
-	public function getAdd(Request $addRequest)
+	public function getAdd(TagRequest $addRequest)
 	{
-		$this->validate($addRequest, 
-			['tags' => 'required|unique:tags,name'],
-			[
-			'tags.required' => 'Chưa có tên tags',
-			'tags.unique' => 'Tags đã tồn tại'
-			]);
 		$tags = new Tags();
 		$tags->name = $addRequest->tags;
 		if ($tags->save()) {
@@ -36,16 +31,10 @@ class TagsController extends Controller {
 		return redirect()->route('admin.tags.list')->with($message);
 	}
 
-	public function postAction(Request $editRequest)
+	public function postAction(TagRequest $editRequest)
 	{
 		if ($editRequest->input('action') == 'edit') {
 			$id = $editRequest->id;
-			$this->validate($editRequest, 
-				['tags' => "required|unique:tags,name,$id"],
-				[
-				'tags.required' => 'Chưa có tên tags',
-				'tags.unique' => 'Tags đã tồn tại'
-				]);
 			$tags = Tags::find($id);
 			if (isset($tags) && $tags != null) {
 				$tags->name = $editRequest->tags;

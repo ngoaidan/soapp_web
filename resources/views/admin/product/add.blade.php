@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('body_right')
-<form action="{!! route('admin.product.postAdd') !!}" method="POST" enctype="multipart/form-data">
+<form action="{{url('')}}/admin/product/add" method="POST" enctype="multipart/form-data">
     <div class="col-lg-7" style="padding-bottom:120px">
         <input type="hidden" name="_token" id="input" class="form-control" value="{!! csrf_token() !!}">
         <div class="form-group">
@@ -28,11 +28,11 @@
                 <div style="color:red">{!! $errors->first('txtPriceOld') !!}</div>
             </div>
         </div>
-        <div class="form-group">                
+        <!-- <div class="form-group" style='display:none'>                
             <label>Số Lượng</label>
                 <input class="form-control" name="txtQuantity" placeholder="Số Lượng" value="{!! old('txtQuantity') !!}" />
                 <div style="color:red">{!! $errors->first('txtQuantity') !!}</div>
-        </div>            
+        </div>  -->           
         <div class="form-group">
             <label>Hãng Sản Xuất</label>
             <select multiple id="manufacturer_select" style="width:100%" name="txtMake[]">
@@ -42,22 +42,15 @@
             </select>
             <div style="color:red">{!! $errors->first('txtMake') !!}</div>
         </div>
-        <div class="form-group">
-            <label for="product_select">Chọn thẻ</label><br>
-            <select multiple id="product_select" style="width:100%" name="tags[]">
-                @foreach($listTags as $key => $tag)
-                <option value="{!! $key !!}" @if(old('tags') == $key) selected='selected'   @endif >{!! $tag !!}</option>
-                @endforeach
-            </select>
-        </div>
+        
         <div class="form-group">
             <label>Giới Thiệu</label>
-            <textarea class="form-control" rows="3" name="txtIntro">{!! old('txtIntro') !!}</textarea>
-                                
+            <textarea class="form-control" rows="2" name="txtIntro">{!! old('txtIntro') !!}</textarea>
+             <script type="text/javascript">ckeditor('txtIntro')</script>                   
         </div>
         <div class="form-group">
             <label>Nội Dung</label>
-            <textarea class="form-control" rows="3" name="txtContent">{!! old('txtContent') !!}</textarea>
+            <textarea class="form-control" rows="5" name="txtContent">{!! old('txtContent') !!}</textarea>
             <script type="text/javascript">ckeditor('txtContent')</script>
         </div>
         <div class="form-group">
@@ -72,8 +65,12 @@
             <div style="color:red">{!! $errors->first('fImages') !!}</div>
         </div>
         <div class="form-group">
-            <label>Keywords</label>
-            <input class="form-control" name="txtKeywords" placeholder="Please Enter Category Keywords" value="{!! old('txtKeywords') !!}"  />
+            <label for="product_select">Chọn thẻ (keyword)</label><br>
+            <select multiple id="product_select" style="width:100%" name="tags[]">
+                @foreach($listTags as $key => $tag)
+                <option value="{!! $key !!}" @if(old('tags') == $key) selected='selected'   @endif >{!! $tag !!}</option>
+                @endforeach
+            </select>
         </div>
         <div class="form-group">
             <label>Description</label>

@@ -105,6 +105,9 @@
                                 <li>
                                     <a href="{!! URL::route('admin.catepost.list') !!}">Danh Mục</a>
                                 </li>
+                                <li>
+                                    <a href="{!! URL::route('admin.catepost.getAdd') !!}">Thêm Danh Mục</a>
+                                </li>
                             </ul>
                             <!-- /.child_menu -->
                         </li>
@@ -127,7 +130,7 @@
                             <!-- /.child_menu -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-drivers-license"></i>About<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-drivers-license"></i>Thông tin<span class="fa arrow"></span></a>
                             <ul class="nav child_menu">
                                 <li>
                                     <a href="{!! URL::route('admin.about.getList') !!}">SEO</a>
@@ -180,7 +183,7 @@
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-                                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    <li><a href="{{url('')}}/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                                     </li>
                                 </ul>
                             </li>

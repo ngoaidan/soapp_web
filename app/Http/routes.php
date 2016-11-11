@@ -22,7 +22,7 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 /*get list post*/
-Route::group(['prefix' => 'admin'], function (){
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function (){
 	Route::group(['prefix' => 'post'], function () {
 		Route::get('list', ['as' => 'admin.post.list', 'uses' => 'PostController@getList']);
 		Route::get('add', ['as' => 'admin.post.getAdd', 'uses' => 'PostController@getAdd']);
@@ -78,8 +78,13 @@ Route::group(['prefix' => 'admin'], function (){
 
 	Route::group(['prefix' => 'catepost'], function () {
 		Route::get('list', ['as' => 'admin.catepost.list', 'uses' => 'CatePostController@getList']);
-		Route::post('add', ['as' => 'admin.catepost.getAdd', 'uses' => 'CatePostController@getAdd']);
-		Route::post('action', ['as' => 'admin.catepost.action', 'uses' => 'CatePostController@postAction']);
+		Route::get('add', ['as' => 'admin.catepost.getAdd', 'uses' => 'CatePostController@getAdd']);
+		Route::post('add', ['as' => 'admin.catepost.postAdd', 'uses' => 'CatePostController@postAdd']);
 		Route::get('delete/{id?}', ['as' => 'admin.catepost.getDelete', 'uses' => 'CatePostController@getDelete']);
+		Route::get('edit/{id?}', ['as' => 'admin.catepost.getEdit', 'uses' => 'CatePostController@getEdit']);
+		Route::post('edit/{id?}', ['as' => 'admin.catepost.postEdit', 'uses' => 'CatePostController@postEdit']);
 	});
 });
+Route::auth();
+
+Route::get('/home', 'HomeController@index');

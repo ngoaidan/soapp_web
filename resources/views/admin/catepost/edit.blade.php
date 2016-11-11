@@ -72,6 +72,7 @@
         finder.selectActionFunction = SetFileField;
         finder.popup();
     }
+
     // This is a sample function which is called when a file is selected in CKFinder.
     function SetFileField( fileUrl )
     {
@@ -79,4 +80,4 @@
       document.getElementById( 'image_link' ).src = document.getElementById( 'link_avatar' ).value;
     }
 </script>
-@endsection()
+@endsection()            

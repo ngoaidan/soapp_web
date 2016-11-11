@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Http\Requests\ManufacturerRequest;
 use App\Http\Controllers\Controller;
 use Session;
 use Illuminate\Http\Request;
@@ -15,14 +16,8 @@ class ManufacturerController extends Controller {
 		return view('admin.manufacturer.list', compact('data'));
 	}
 
-	public function getAdd(Request $addRequest)
+	public function getAdd(ManufacturerRequest $addRequest)
 	{
-		$this->validate($addRequest, 
-			['manufacturer' => 'required|unique:manufacturer,name'],
-			[
-			'manufacturer.required' => 'Chưa có tên Manufacturer',
-			'manufacturer.unique' => 'Manufacturer đã tồn tại'
-			]);
 		$manufacturer = new Manufacturer();
 		$manufacturer->name = $addRequest->manufacturer;
 		if ($manufacturer->save()) {
@@ -37,16 +32,10 @@ class ManufacturerController extends Controller {
 		return redirect()->route('admin.manufacturer.list')->with($message);
 	}
 
-	public function postAction(Request $editRequest)
+	public function postAction(ManufacturerRequest $editRequest)
 	{
 		if ($editRequest->input('action') == 'edit') {
 			$id = $editRequest->id;
-			$this->validate($editRequest, 
-				['manufacturer' => "required|unique:manufacturer,name,$id"],
-				[
-				'manufacturer.required' => 'Chưa có tên manufacturer',
-				'manufacturer.unique' => 'manufacturer đã tồn tại'
-				]);
 			$manufacturer = Manufacturer::find($id);
 			if (isset($manufacturer) && $manufacturer != null) {
 				$manufacturer->name = $editRequest->manufacturer;

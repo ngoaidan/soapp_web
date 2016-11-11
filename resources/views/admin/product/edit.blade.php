@@ -30,7 +30,7 @@
                                 <div style="color:red">{!! $errors->first('txtPriceOld') !!}</div>
                             </div>
                             </div>
-                            <div class="form-group">                
+                            <div class="form-group" style='display:none'>                
             <label>Số Lượng</label>
                 <input class="form-control" name="txtQuantity" placeholder="Số Lượng" value="{!! old('txtQuantity', $data['quantity']) !!}" />
                 <div style="color:red">{!! $errors->first('txtQuantity') !!}</div>
@@ -60,6 +60,7 @@
                             <div class="form-group">
                                 <label>Intro</label>
                                 <textarea class="form-control" rows="3" name="txtIntro">{!! old('txtIntro', $data['intro']) !!}</textarea>
+                                <script type="text/javascript">ckeditor('txtIntro')</script>
                             </div>
                             <div class="form-group">
                                 <label>Content</label>

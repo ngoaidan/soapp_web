@@ -133,6 +133,7 @@ class AboutController extends Controller {
 			$shop->tel = $request->txtTel;
 			$shop->phone = $request->txtPhone;
 			$shop->email = $request->txtEmail;
+			$shop->facebook = $request->txtFacebook;
 			if($shop->save()){
 				$message = ['level' => 'success', 'flash_message' => 'Cập nhật thành công'];
 			}else{

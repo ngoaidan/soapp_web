@@ -66,14 +66,14 @@ class ProductController extends Controller {
 		$product->alias = convert_vi_to_en($request->txtName);
 		$product->price = $request->txtPrice;
 		$product->price_old = $request->txtPriceOld;
-		$product->quantity = $request->txtQuantity;
+		$product->quantity = 0;
 		$product->cate_id = $request->cate_id;
 		$product->intro = $request->txtIntro;
 		$product->content = $request->txtContent;
 		$product->user_id = /*Auth::user()->id*/ 1;
 		$product->image_link = $request->fImages;
 		$product->alt = $request->txtAltImage;
-		$product->image_thumb = URL().'/public/upload/_thumbs/Images/'.$image_arr[$count-1];
+		$product->image_thumb = URL('').'/public/upload/_thumbs/Images/'.$image_arr[$count-1];
 		//$request->file('fImages')->move('/public/uploads/', $product->image);
 		$product->keywords = $request->txtKeywords;
 		$product->description = $request->txtDescription;
@@ -92,7 +92,7 @@ class ProductController extends Controller {
 					$productImage->image = $img;
 					$image_arr_detail = explode('/', $img);
 					$count_detail = count($image_arr_detail);	
-					$productImage->image_thumb =  URL().'/public/upload/_thumbs/Images/'.$image_arr_detail[$count_detail-1];
+					$productImage->image_thumb =  URL('').'/public/upload/_thumbs/Images/'.$image_arr_detail[$count_detail-1];
 					$productImage->product_id = $product_id;
 					$productImage->save();		
 				}

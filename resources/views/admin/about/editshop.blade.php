@@ -23,6 +23,11 @@
                 <input class="form-control" name="txtEmail" placeholder="Nhập Email" value="{!! old('txtEmail', $data['email']) !!}" />
                 <div style="color:red">{!! $errors->first('txtEmail') !!}</div>
             </div>
+            <div class="form-group">
+                <label>Facebook</label>
+                <input class="form-control" name="txtFacebook" placeholder="Nhập Facebook" value="{!! old('txtFacebook', $data['facebook']) !!}" />
+                <div style="color:red">{!! $errors->first('txtFacebook') !!}</div>
+            </div>
             
             <button type="submit" class="btn btn-default">Cập Nhật</button>
             <button type="reset" class="btn btn-default">Reset</button>

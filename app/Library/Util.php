@@ -36,7 +36,7 @@ function cate_parent($data, $parent = 0, $str = '--', $select = 0)
         }else{
           echo "<option value='" .$val['id']. "'>" .$str . $val['name']. "</option>";
         }
-        cate_parent($data, $val['id'], $str.'--', $select);
+        cate_parent($data, $val['id'], $str.'----', $select);
       }
     }
 }
